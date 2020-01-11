@@ -44,5 +44,24 @@ namespace InteraStudio
             nodes = new Dictionary<int, SceneNode>();
             root = -1;
         }
+
+        public void AddScene(SceneNode n)
+        {
+            nodes[n.id] = n;
+            if (root == -1) root = n.id;
+        }
+
+        public SceneNode CreateScene()
+        {
+            SceneNode n = new SceneNode();
+            AddScene(n);
+            return n;
+        }
+
+        public void RemoveScene(int id)
+        {
+            // TODO: clean up and update root
+            nodes.Remove(id);
+        }
     }
 }

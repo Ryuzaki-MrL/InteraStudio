@@ -48,6 +48,7 @@
             this.importarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileProject = new System.Windows.Forms.OpenFileDialog();
             this.openFileVideo = new System.Windows.Forms.OpenFileDialog();
+            this.doInícioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -120,6 +121,7 @@
             this.importarToolStripMenuItem1.Name = "importarToolStripMenuItem1";
             this.importarToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.importarToolStripMenuItem1.Text = "Importar";
+            this.importarToolStripMenuItem1.Click += new System.EventHandler(this.importarToolStripMenuItem1_Click);
             // 
             // toolStripMenuItem2
             // 
@@ -137,6 +139,7 @@
             this.sairToolStripMenuItem.Name = "sairToolStripMenuItem";
             this.sairToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.sairToolStripMenuItem.Text = "Sair";
+            this.sairToolStripMenuItem.Click += new System.EventHandler(this.sairToolStripMenuItem_Click);
             // 
             // editarToolStripMenuItem
             // 
@@ -146,6 +149,8 @@
             // 
             // reproduzirToolStripMenuItem
             // 
+            this.reproduzirToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.doInícioToolStripMenuItem});
             this.reproduzirToolStripMenuItem.Name = "reproduzirToolStripMenuItem";
             this.reproduzirToolStripMenuItem.Size = new System.Drawing.Size(76, 20);
             this.reproduzirToolStripMenuItem.Text = "Reproduzir";
@@ -205,6 +210,12 @@
             // 
             this.openFileProject.Filter = "\"Projeto do InteraStudio|*.intera";
             // 
+            // doInícioToolStripMenuItem
+            // 
+            this.doInícioToolStripMenuItem.Name = "doInícioToolStripMenuItem";
+            this.doInícioToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.doInícioToolStripMenuItem.Text = "Do início";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -248,6 +259,7 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
         private System.Windows.Forms.OpenFileDialog openFileProject;
         private System.Windows.Forms.OpenFileDialog openFileVideo;
+        private System.Windows.Forms.ToolStripMenuItem doInícioToolStripMenuItem;
     }
 }
 

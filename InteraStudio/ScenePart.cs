@@ -1,13 +1,19 @@
 ﻿using System.Collections.Generic;
-using System.Drawing;
+using System.Windows.Forms;
 
 namespace InteraStudio
 {
     public class ScenePart
     {
-        public int id;
         public string title;
-        public Bitmap thumbnail;
+        public string videoFile;
+        public PictureBox thumbnail;
+        public int timeout;
         public List<SceneTransition> transitions;
+
+        public ScenePart()
+        {
+            transitions = new List<SceneTransition>();
+        }
     }
 }

@@ -8,8 +8,8 @@ namespace InteraStudio
         private string fname;
 
         public string title;
-        public List<string> videoSources;
-        public SceneGraph scene;
+        public List<string> videoSources = new List<string>();
+        public SceneGraph scene = new SceneGraph();
 
         public void Load(string filename)
         {
