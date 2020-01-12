@@ -5,7 +5,7 @@ namespace InteraStudio
 {
     public class InteraFile
     {
-        private string fname;
+        public string fname;
 
         public string title;
         public List<string> videoSources = new List<string>();
