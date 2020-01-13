@@ -11,6 +11,8 @@ namespace InteraStudio
         public int timeout;
         public List<SceneTransition> transitions;
 
+        // TODO: save picturebox location and transition arrows position
+
         public ScenePart()
         {
             transitions = new List<SceneTransition>();
