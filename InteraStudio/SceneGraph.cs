@@ -20,6 +20,7 @@ namespace InteraStudio
         {
             id = ++id_inc;
             value = new ScenePart();
+            value.id = id;
             adjacent = new HashSet<int>();
             parents = new HashSet<int>();
         }
@@ -62,6 +63,11 @@ namespace InteraStudio
         {
             // TODO: clean up and update root
             nodes.Remove(id);
+        }
+
+        public ScenePart GetScene(int id)
+        {
+            return nodes[id].value;
         }
     }
 }

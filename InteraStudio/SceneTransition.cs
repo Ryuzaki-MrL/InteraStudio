@@ -1,4 +1,6 @@
-﻿using System.Windows.Input;
+﻿using System.Collections.Generic;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace InteraStudio
 {
@@ -15,7 +17,10 @@ namespace InteraStudio
     /// </summary>
     public abstract class SceneTransition
     {
-        public int nextScene;
+        protected TransitionID id;
+
+        public ScenePart nextScene;
+        public List<Point> arrowPath = new List<Point>();
 
         public static SceneTransition GetTransitionById(TransitionID id)
         {
@@ -27,13 +32,20 @@ namespace InteraStudio
                     return new SceneTransitionAutomatic();
             }
         }
+
+        public TransitionID GetTransitionID()
+        {
+            return id;
+        }
     }
 
     public class SceneTransitionAutomatic : SceneTransition
     {
+        public SceneTransitionAutomatic() { id = TransitionID.Automatic; }
+
         public override string ToString()
         {
-            return "Automática";
+            return "Transição automática para a cena " + nextScene.title;
         }
     }
 
@@ -41,9 +53,11 @@ namespace InteraStudio
     {
         public int keycode;
 
+        public SceneTransitionKeyboard() { id = TransitionID.Keyboard; }
+
         public override string ToString()
         {
-            return "Pressionamento de tecla";
+            return "Pressione " + Keys.GetName(typeof(Keys), keycode) + " para a cena " + nextScene.title;
         }
     }
 }

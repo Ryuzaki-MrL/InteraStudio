@@ -1,21 +1,42 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.Windows.Forms;
 
 namespace InteraStudio
 {
     public class ScenePart
     {
+        /// <summary>
+        /// ID auto-incrementado
+        /// </summary>
+        public static int id_inc = 0;
+
+        public int id;
         public string title;
         public string videoFile;
         public PictureBox thumbnail;
         public int timeout;
-        public List<SceneTransition> transitions;
+        public BindingList<SceneTransition> transitions;
+        public Dictionary<ScenePart, int> refcount;
 
-        // TODO: save picturebox location and transition arrows position
-
-        public ScenePart()
+        public ScenePart(int uid = -1)
         {
-            transitions = new List<SceneTransition>();
+            id = (uid < 0) ? ++id_inc : uid;
+            transitions = new BindingList<SceneTransition>();
+            refcount = new Dictionary<ScenePart, int>();
+        }
+
+        public void AddRef(ScenePart to)
+        {
+            if (!refcount.ContainsKey(to))
+                refcount[to] = 0;
+            ++refcount[to];
+        }
+
+        public void DecRef(ScenePart to)
+        {
+            if (refcount.ContainsKey(to) && --refcount[to] <= 0)
+                refcount.Remove(to);
         }
     }
 }
