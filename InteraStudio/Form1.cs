@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 
 namespace InteraStudio
@@ -25,6 +26,11 @@ namespace InteraStudio
 
         }
 
+        private void WindowText(string fname)
+        {
+            this.Text = fname + " - InteraStudio";
+        }
+
         private void carregarProjetoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (openFileProject.ShowDialog() == DialogResult.OK)
@@ -32,6 +38,7 @@ namespace InteraStudio
                 project = new InteraFile();
                 project.storyboard = new Storyboard(storyboardBox, contextMenuCena);
                 project.Load(openFileProject.FileName);
+                WindowText(Path.GetFileName(project.fname));
             }
         }
 
@@ -39,6 +46,7 @@ namespace InteraStudio
         {
             project = new InteraFile();
             project.storyboard = new Storyboard(storyboardBox, contextMenuCena);
+            WindowText("*Novo Projeto");
         }
 
         private void importarToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -64,6 +72,7 @@ namespace InteraStudio
         {
             FormSceneProperties p = new FormSceneProperties(project.storyboard.GetScene((int)ctxSource.Tag));
             p.ShowDialog();
+            storyboardBox.Invalidate();
         }
 
         private void novaCenaToolStripMenuItem_Click(object sender, EventArgs e)
@@ -92,17 +101,20 @@ namespace InteraStudio
             project.storyboard.SetNewTransition((int)ctxSource.Tag, (TransitionID)option.Tag);
         }
 
+        private void DrawSceneBorder(Pen p, ScenePart scene, Graphics g)
+        {
+            if (scene != null)
+            {
+                g.DrawRectangle(p, new Rectangle(scene.thumbnail.Location, scene.thumbnail.Size));
+            }
+        }
+
         private void storyboardBox_Paint(object sender, PaintEventArgs e)
         {
-            Pen pen = new Pen(Color.Red, 3);
+            DrawSceneBorder(new Pen(Color.Blue, 3), project.storyboard.selected, e.Graphics);
+            DrawSceneBorder(new Pen(Color.Red, 2), project.storyboard.firstScene, e.Graphics);
 
-            ScenePart first = project.storyboard.firstScene;
-            if (first != null)
-            {
-                e.Graphics.DrawRectangle(pen, new Rectangle(first.thumbnail.Location, first.thumbnail.Size));
-            }
-
-            pen = new Pen(Color.Black, 3);
+            Pen pen = new Pen(Color.Black, 3);
 
             foreach (PictureBox pbox in storyboardBox.Controls)
             {
@@ -136,11 +148,12 @@ namespace InteraStudio
 
         private void salvarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (project.fname.Equals(String.Empty))
+            if (project.fname.Equals(string.Empty))
             {
                 if (saveFileProject.ShowDialog() == DialogResult.OK)
                 {
                     project.fname = saveFileProject.FileName;
+                    WindowText(Path.GetFileName(project.fname));
                     project.Save();
                 }
             }
@@ -168,6 +181,17 @@ namespace InteraStudio
         private void Form1_Enter(object sender, EventArgs e)
         {
             storyboardBox.Invalidate();
+        }
+
+        private void removerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            project.storyboard.RemoveScene((int)ctxSource.Tag);
+        }
+
+        private void salvarCópiaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            project.fname = string.Empty;
+            salvarToolStripMenuItem_Click(sender, e);
         }
     }
 }

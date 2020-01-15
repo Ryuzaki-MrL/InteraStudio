@@ -49,20 +49,21 @@
             this.novaCenaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.propertiesBox = new System.Windows.Forms.GroupBox();
+            this.textBoxAuthor = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.textBoxProjTitle = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.openFileProject = new System.Windows.Forms.OpenFileDialog();
             this.openFileVideo = new System.Windows.Forms.OpenFileDialog();
             this.contextMenuCena = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.primeiraCenaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editarToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.removerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.novaTransiçãoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.subTT_0 = new System.Windows.Forms.ToolStripMenuItem();
             this.subTT_1 = new System.Windows.Forms.ToolStripMenuItem();
             this.saveFileProject = new System.Windows.Forms.SaveFileDialog();
-            this.primeiraCenaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.label1 = new System.Windows.Forms.Label();
-            this.textBoxProjTitle = new System.Windows.Forms.TextBox();
-            this.textBoxAuthor = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.salvarCópiaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -91,6 +92,7 @@
             this.novoProjetoToolStripMenuItem,
             this.carregarProjetoToolStripMenuItem,
             this.salvarToolStripMenuItem,
+            this.salvarCópiaToolStripMenuItem,
             this.toolStripSeparator1,
             this.importarToolStripMenuItem1,
             this.toolStripMenuItem2,
@@ -115,8 +117,8 @@
             this.carregarProjetoToolStripMenuItem.Name = "carregarProjetoToolStripMenuItem";
             this.carregarProjetoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
             this.carregarProjetoToolStripMenuItem.ShowShortcutKeys = false;
-            this.carregarProjetoToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
-            this.carregarProjetoToolStripMenuItem.Text = "Abrir Projeto";
+            this.carregarProjetoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.carregarProjetoToolStripMenuItem.Text = "Abrir...";
             this.carregarProjetoToolStripMenuItem.Click += new System.EventHandler(this.carregarProjetoToolStripMenuItem_Click);
             // 
             // salvarToolStripMenuItem
@@ -255,82 +257,6 @@
             this.propertiesBox.TabStop = false;
             this.propertiesBox.Text = "Projeto";
             // 
-            // openFileProject
-            // 
-            this.openFileProject.Filter = "\"Projeto do InteraStudio|*.intera";
-            // 
-            // contextMenuCena
-            // 
-            this.contextMenuCena.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.primeiraCenaToolStripMenuItem,
-            this.editarToolStripMenuItem1,
-            this.removerToolStripMenuItem,
-            this.novaTransiçãoToolStripMenuItem});
-            this.contextMenuCena.Name = "contextMenuCena";
-            this.contextMenuCena.Size = new System.Drawing.Size(155, 92);
-            this.contextMenuCena.Opened += new System.EventHandler(this.contextMenuCena_Opened);
-            // 
-            // editarToolStripMenuItem1
-            // 
-            this.editarToolStripMenuItem1.Name = "editarToolStripMenuItem1";
-            this.editarToolStripMenuItem1.Size = new System.Drawing.Size(154, 22);
-            this.editarToolStripMenuItem1.Text = "Editar";
-            this.editarToolStripMenuItem1.Click += new System.EventHandler(this.editarToolStripMenuItem1_Click);
-            // 
-            // removerToolStripMenuItem
-            // 
-            this.removerToolStripMenuItem.Name = "removerToolStripMenuItem";
-            this.removerToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
-            this.removerToolStripMenuItem.Text = "Remover";
-            // 
-            // novaTransiçãoToolStripMenuItem
-            // 
-            this.novaTransiçãoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.subTT_0,
-            this.subTT_1});
-            this.novaTransiçãoToolStripMenuItem.Name = "novaTransiçãoToolStripMenuItem";
-            this.novaTransiçãoToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
-            this.novaTransiçãoToolStripMenuItem.Text = "Nova Transição";
-            // 
-            // subTT_0
-            // 
-            this.subTT_0.Name = "subTT_0";
-            this.subTT_0.Size = new System.Drawing.Size(204, 22);
-            this.subTT_0.Tag = "";
-            this.subTT_0.Text = "Automática";
-            this.subTT_0.Click += new System.EventHandler(this.novaTransiçãoToolStripMenuItem_Click);
-            // 
-            // subTT_1
-            // 
-            this.subTT_1.Name = "subTT_1";
-            this.subTT_1.Size = new System.Drawing.Size(204, 22);
-            this.subTT_1.Text = "Pressionamento de Tecla";
-            this.subTT_1.Click += new System.EventHandler(this.novaTransiçãoToolStripMenuItem_Click);
-            // 
-            // primeiraCenaToolStripMenuItem
-            // 
-            this.primeiraCenaToolStripMenuItem.Name = "primeiraCenaToolStripMenuItem";
-            this.primeiraCenaToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
-            this.primeiraCenaToolStripMenuItem.Text = "Primeira Cena";
-            this.primeiraCenaToolStripMenuItem.Click += new System.EventHandler(this.primeiraCenaToolStripMenuItem_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 32);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(38, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Título:";
-            // 
-            // textBoxProjTitle
-            // 
-            this.textBoxProjTitle.Location = new System.Drawing.Point(56, 29);
-            this.textBoxProjTitle.Name = "textBoxProjTitle";
-            this.textBoxProjTitle.Size = new System.Drawing.Size(416, 20);
-            this.textBoxProjTitle.TabIndex = 1;
-            this.textBoxProjTitle.TextChanged += new System.EventHandler(this.textBoxProjTitle_TextChanged);
-            // 
             // textBoxAuthor
             // 
             this.textBoxAuthor.Location = new System.Drawing.Point(56, 61);
@@ -348,6 +274,90 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "Autor:";
             // 
+            // textBoxProjTitle
+            // 
+            this.textBoxProjTitle.Location = new System.Drawing.Point(56, 29);
+            this.textBoxProjTitle.Name = "textBoxProjTitle";
+            this.textBoxProjTitle.Size = new System.Drawing.Size(416, 20);
+            this.textBoxProjTitle.TabIndex = 1;
+            this.textBoxProjTitle.TextChanged += new System.EventHandler(this.textBoxProjTitle_TextChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 32);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(38, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Título:";
+            // 
+            // openFileProject
+            // 
+            this.openFileProject.Filter = "\"Projeto do InteraStudio|*.intera";
+            // 
+            // contextMenuCena
+            // 
+            this.contextMenuCena.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.primeiraCenaToolStripMenuItem,
+            this.editarToolStripMenuItem1,
+            this.removerToolStripMenuItem,
+            this.novaTransiçãoToolStripMenuItem});
+            this.contextMenuCena.Name = "contextMenuCena";
+            this.contextMenuCena.Size = new System.Drawing.Size(155, 92);
+            this.contextMenuCena.Opened += new System.EventHandler(this.contextMenuCena_Opened);
+            // 
+            // primeiraCenaToolStripMenuItem
+            // 
+            this.primeiraCenaToolStripMenuItem.Name = "primeiraCenaToolStripMenuItem";
+            this.primeiraCenaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.primeiraCenaToolStripMenuItem.Text = "Primeira Cena";
+            this.primeiraCenaToolStripMenuItem.Click += new System.EventHandler(this.primeiraCenaToolStripMenuItem_Click);
+            // 
+            // editarToolStripMenuItem1
+            // 
+            this.editarToolStripMenuItem1.Name = "editarToolStripMenuItem1";
+            this.editarToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.editarToolStripMenuItem1.Text = "Editar";
+            this.editarToolStripMenuItem1.Click += new System.EventHandler(this.editarToolStripMenuItem1_Click);
+            // 
+            // removerToolStripMenuItem
+            // 
+            this.removerToolStripMenuItem.Name = "removerToolStripMenuItem";
+            this.removerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.removerToolStripMenuItem.Text = "Remover";
+            this.removerToolStripMenuItem.Click += new System.EventHandler(this.removerToolStripMenuItem_Click);
+            // 
+            // novaTransiçãoToolStripMenuItem
+            // 
+            this.novaTransiçãoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.subTT_0,
+            this.subTT_1});
+            this.novaTransiçãoToolStripMenuItem.Name = "novaTransiçãoToolStripMenuItem";
+            this.novaTransiçãoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.novaTransiçãoToolStripMenuItem.Text = "Nova Transição";
+            // 
+            // subTT_0
+            // 
+            this.subTT_0.Name = "subTT_0";
+            this.subTT_0.Size = new System.Drawing.Size(204, 22);
+            this.subTT_0.Tag = "";
+            this.subTT_0.Text = "Automática";
+            this.subTT_0.Click += new System.EventHandler(this.novaTransiçãoToolStripMenuItem_Click);
+            // 
+            // subTT_1
+            // 
+            this.subTT_1.Name = "subTT_1";
+            this.subTT_1.Size = new System.Drawing.Size(204, 22);
+            this.subTT_1.Text = "Pressionamento de Tecla";
+            this.subTT_1.Click += new System.EventHandler(this.novaTransiçãoToolStripMenuItem_Click);
+            // 
+            // salvarCópiaToolStripMenuItem
+            // 
+            this.salvarCópiaToolStripMenuItem.Name = "salvarCópiaToolStripMenuItem";
+            this.salvarCópiaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.salvarCópiaToolStripMenuItem.Text = "Salvar Como...";
+            this.salvarCópiaToolStripMenuItem.Click += new System.EventHandler(this.salvarCópiaToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -356,7 +366,7 @@
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.menuStrip1);
             this.Name = "Form1";
-            this.Text = "InteraStudio";
+            this.Text = "Novo Projeto - InteraStudio";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.Enter += new System.EventHandler(this.Form1_Enter);
             this.menuStrip1.ResumeLayout(false);
@@ -410,6 +420,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBoxAuthor;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ToolStripMenuItem salvarCópiaToolStripMenuItem;
     }
 }
 

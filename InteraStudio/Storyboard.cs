@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace InteraStudio
@@ -59,7 +60,20 @@ namespace InteraStudio
 
         public void RemoveScene(int id)
         {
-            // TODO
+            foreach (ScenePart p in scenes[id].refcount.Keys)
+            {
+                IReadOnlyList<SceneTransition> tlist = p.transitions.Where(t => t.nextScene.id == id).ToList();
+                foreach (SceneTransition t in tlist)
+                {
+                    p.transitions.Remove(t);
+                }
+            }
+
+            if (firstScene == scenes[id]) firstScene = null;
+
+            group.Controls.Remove(scenes[id].thumbnail);
+            scenes.Remove(id);
+            group.Invalidate();
         }
 
         public ScenePart GetScene(int id)
@@ -74,6 +88,7 @@ namespace InteraStudio
 
         public void SetAsFirstScene(int id)
         {
+            if (id < 0) return;
             firstScene = scenes[id];
             group.Invalidate();
         }
@@ -98,6 +113,7 @@ namespace InteraStudio
         public void Clear()
         {
             group.Controls.Clear();
+            group.Invalidate();
             scenes.Clear();
         }
 
@@ -132,6 +148,7 @@ namespace InteraStudio
             Control thumbnail = (Control)sender;
             FormSceneProperties p = new FormSceneProperties(scenes[(int)thumbnail.Tag]);
             p.ShowDialog();
+            group.Invalidate();
         }
 
         private void thumbnail_MouseClick(object sender, MouseEventArgs e)
@@ -148,6 +165,7 @@ namespace InteraStudio
             {
                 // Sets the starting scene for the "start from the selected scene" option
                 selected = scenes[(int)thumbnail.Tag];
+                group.Invalidate();
             }
         }
     }

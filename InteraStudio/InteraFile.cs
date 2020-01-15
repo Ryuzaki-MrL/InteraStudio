@@ -18,6 +18,7 @@ namespace InteraStudio
             {
                 fname = filename;
                 int firstScene = -1;
+                bool hasFirstScene = false;
                 XmlReader xml = XmlReader.Create(fname);
 
                 while (xml.Read())
@@ -32,7 +33,7 @@ namespace InteraStudio
                         else if (xml.Name == "storyboard" && xml.HasAttributes)
                         {
                             ScenePart.id_inc = int.Parse(xml.GetAttribute("lastId"));
-                            firstScene = int.Parse(xml.GetAttribute("firstScene"));
+                            hasFirstScene = int.TryParse(xml.GetAttribute("firstScene"), out firstScene);
                         }
                         else if (xml.Name == "scene" && xml.HasAttributes)
                         {
@@ -57,7 +58,10 @@ namespace InteraStudio
                 }
                 xml.Close();
 
-                storyboard.SetAsFirstScene(firstScene);
+                if (hasFirstScene)
+                {
+                    storyboard.SetAsFirstScene(firstScene);
+                }
             }
             catch(Exception e)
             {
@@ -85,7 +89,8 @@ namespace InteraStudio
                 xml.WriteStartElement("storyboard");
                 {
                     xml.WriteAttributeString("lastId", ScenePart.id_inc.ToString());
-                    xml.WriteAttributeString("firstScene", storyboard.firstScene.id.ToString());
+                    if (storyboard.firstScene != null)
+                        xml.WriteAttributeString("firstScene", storyboard.firstScene.id.ToString());
 
                     foreach (ScenePart n in storyboard.GetSceneList())
                     {
