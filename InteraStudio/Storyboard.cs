@@ -10,7 +10,7 @@ namespace InteraStudio
     {
         private Dictionary<int, ScenePart> scenes = new Dictionary<int, ScenePart>();
 
-        public GroupBox group;
+        public Control group;
         public ScenePart firstScene = null;
         public ScenePart selected = null;
 
@@ -21,7 +21,7 @@ namespace InteraStudio
 
         public Storyboard() { }
 
-        public Storyboard(GroupBox g, ContextMenuStrip c)
+        public Storyboard(Control g, ContextMenuStrip c)
         {
             group = g;
             cms = c;
@@ -70,6 +70,7 @@ namespace InteraStudio
             }
 
             if (firstScene == scenes[id]) firstScene = null;
+            if (selected == scenes[id]) selected = null;
 
             group.Controls.Remove(scenes[id].thumbnail);
             scenes.Remove(id);

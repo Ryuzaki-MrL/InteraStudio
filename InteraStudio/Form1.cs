@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.IO;
 using System.Windows.Forms;
 
@@ -14,7 +15,7 @@ namespace InteraStudio
         {
             InitializeComponent();
 
-            project.storyboard = new Storyboard(storyboardBox, contextMenuCena);
+            project.storyboard = new Storyboard(storyboardPanel, contextMenuCena);
             storyboardBox.AllowDrop = true;
 
             subTT_0.Tag = TransitionID.Automatic;
@@ -36,7 +37,7 @@ namespace InteraStudio
             if (openFileProject.ShowDialog() == DialogResult.OK)
             {
                 project = new InteraFile();
-                project.storyboard = new Storyboard(storyboardBox, contextMenuCena);
+                project.storyboard = new Storyboard(storyboardPanel, contextMenuCena);
                 project.Load(openFileProject.FileName);
                 WindowText(Path.GetFileName(project.fname));
             }
@@ -45,7 +46,7 @@ namespace InteraStudio
         private void novoProjetoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             project = new InteraFile();
-            project.storyboard = new Storyboard(storyboardBox, contextMenuCena);
+            project.storyboard = new Storyboard(storyboardPanel, contextMenuCena);
             WindowText("*Novo Projeto");
         }
 
@@ -72,7 +73,7 @@ namespace InteraStudio
         {
             FormSceneProperties p = new FormSceneProperties(project.storyboard.GetScene((int)ctxSource.Tag));
             p.ShowDialog();
-            storyboardBox.Invalidate();
+            storyboardPanel.Invalidate();
         }
 
         private void novaCenaToolStripMenuItem_Click(object sender, EventArgs e)
@@ -116,30 +117,48 @@ namespace InteraStudio
 
             Pen pen = new Pen(Color.Black, 3);
 
-            foreach (PictureBox pbox in storyboardBox.Controls)
+            foreach (PictureBox pbox in storyboardPanel.Controls)
             {
                 foreach (SceneTransition t in project.storyboard.GetScene((int)pbox.Tag).transitions)
                 {
-                    //e.Graphics.DrawLines(pen, t.arrowPath.ToArray());
-
                     PictureBox tp = t.nextScene.thumbnail;
-
-                    Point p1 = new Point(
-                        (pbox.Left + pbox.Right) / 2,
-                        (pbox.Top + pbox.Bottom) / 2
-                    );
-
-                    Point p2 = new Point(
-                        (tp.Left + tp.Right) / 2,
-                        (tp.Top + tp.Bottom) / 2
-                    );
 
                     if (pbox.Tag == tp.Tag)
                     {
-                        e.Graphics.DrawEllipse(pen, new Rectangle(new Point(pbox.Left - 32, pbox.Top - 32), new Size(64, 64)));
+                        e.Graphics.DrawEllipse(pen, new Rectangle(new Point(pbox.Right - 32, pbox.Top - 32), new Size(64, 64)));
                     }
                     else
                     {
+                        Point p1 = new Point(
+                            (pbox.Left + pbox.Right) / 2,
+                            (pbox.Top + pbox.Bottom) / 2
+                        );
+
+                        Point p2 = new Point(
+                            (tp.Left + tp.Right) / 2,
+                            (tp.Top + tp.Bottom) / 2
+                        );
+
+                        double dir = Math.Atan2(p2.Y - p1.Y, p2.X - p1.X);
+
+                        if (Math.Abs(Math.Cos(dir)) > Math.Abs(Math.Sin(dir)))
+                        {
+                            p2.X -= (Math.Sign(Math.Cos(dir)) * (8 + (tp.Size.Width / 2)));
+                            p2.Y -= (int)(Math.Sin(dir) * (8 + (tp.Size.Height / 2)));
+                        }
+                        else
+                        {
+                            p2.X -= (int)(Math.Cos(dir) * (8 + (tp.Size.Width / 2)));
+                            p2.Y -= (Math.Sign(Math.Sin(dir)) * (8 + (tp.Size.Height / 2)));
+                        }
+
+                        GraphicsPath capPath = new GraphicsPath();
+                        capPath.AddLine(-2, 0, 2, 0);
+                        capPath.AddLine(-2, 0, 0, 2);
+                        capPath.AddLine(0, 2, 2, 0);
+
+                        pen.CustomEndCap = new CustomLineCap(null, capPath);
+
                         e.Graphics.DrawLine(pen, p1, p2);
                     }
                 }
@@ -180,7 +199,7 @@ namespace InteraStudio
 
         private void Form1_Enter(object sender, EventArgs e)
         {
-            storyboardBox.Invalidate();
+            storyboardPanel.Invalidate();
         }
 
         private void removerToolStripMenuItem_Click(object sender, EventArgs e)
