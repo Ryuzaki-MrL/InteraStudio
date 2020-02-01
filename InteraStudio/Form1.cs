@@ -60,7 +60,6 @@ namespace InteraStudio
 
         private void sairToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // TODO: ask for confirmation
             Close();
         }
 
@@ -211,6 +210,13 @@ namespace InteraStudio
         {
             project.fname = string.Empty;
             salvarToolStripMenuItem_Click(sender, e);
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult d = MessageBox.Show("Salvar as alterações antes de sair?", "InteraStudio", MessageBoxButtons.YesNo);
+            if (d == DialogResult.Yes)
+                salvarToolStripMenuItem_Click(sender, e);
         }
     }
 }

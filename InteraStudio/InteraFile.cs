@@ -52,7 +52,12 @@ namespace InteraStudio
                             TransitionID type = (TransitionID)Enum.Parse(typeof(TransitionID), xml.GetAttribute("type"));
                             SceneTransition t = storyboard.CreateTransition(src, dest, type);
                             if (type == TransitionID.Keyboard)
-                                ((SceneTransitionKeyboard)t).keycode = int.Parse(xml.GetAttribute("keycode"));
+                            {
+                                SceneTransitionKeyboard tk = (SceneTransitionKeyboard)t;
+                                tk.keycode = int.Parse(xml.GetAttribute("keycode"));
+                                if (!bool.TryParse(xml.GetAttribute("showOverlay"), out tk.showOverlay))
+                                    tk.showOverlay = false;
+                            }
                         }
                     }
                 }
@@ -114,7 +119,11 @@ namespace InteraStudio
                             xml.WriteAttributeString("srcScene", n.id.ToString());
                             xml.WriteAttributeString("nextScene", t.nextScene.id.ToString());
                             if (t.GetTransitionID() == TransitionID.Keyboard)
-                                xml.WriteAttributeString("keycode", ((SceneTransitionKeyboard)t).keycode.ToString());
+                            {
+                                SceneTransitionKeyboard tk = (SceneTransitionKeyboard)t;
+                                xml.WriteAttributeString("keycode", tk.keycode.ToString());
+                                xml.WriteAttributeString("showOverlay", tk.showOverlay.ToString());
+                            }
                             xml.WriteEndElement();
                         }
                     }

@@ -15,8 +15,6 @@ namespace InteraStudio
             textBoxSource.Text = scene.videoFile;
             thumbnailBox.ImageLocation = scene.thumbnail.ImageLocation;
             listTransitions.DataSource = scene.transitions;
-
-            // TODO: edit transitions (calls the Strategy Form for that transition type)
         }
 
         private void textBoxTitle_TextChanged(object sender, System.EventArgs e)
@@ -47,6 +45,23 @@ namespace InteraStudio
             SceneTransition t = scene.transitions[listTransitions.SelectedIndex];
             t.nextScene.DecRef(scene);
             scene.transitions.Remove(t);
+        }
+
+        private void editarToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            if (listTransitions.SelectedIndex < 0) return;
+
+            SceneTransition t = scene.transitions[listTransitions.SelectedIndex];
+            t.Configure();
+        }
+
+        private void listTransitions_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            int index = listTransitions.IndexFromPoint(e.Location);
+            if (index != ListBox.NoMatches)
+            {
+                scene.transitions[index].Configure();
+            }
         }
     }
 }

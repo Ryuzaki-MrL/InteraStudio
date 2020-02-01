@@ -49,6 +49,7 @@
             this.contextMenuBoard = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.novaCenaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.storyboardPanel = new System.Windows.Forms.Panel();
             this.propertiesBox = new System.Windows.Forms.GroupBox();
             this.textBoxAuthor = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -64,7 +65,6 @@
             this.subTT_0 = new System.Windows.Forms.ToolStripMenuItem();
             this.subTT_1 = new System.Windows.Forms.ToolStripMenuItem();
             this.saveFileProject = new System.Windows.Forms.SaveFileDialog();
-            this.storyboardPanel = new System.Windows.Forms.Panel();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -255,6 +255,17 @@
             this.importarToolStripMenuItem.Text = "Importar";
             this.importarToolStripMenuItem.Click += new System.EventHandler(this.importarToolStripMenuItem1_Click);
             // 
+            // storyboardPanel
+            // 
+            this.storyboardPanel.AutoScroll = true;
+            this.storyboardPanel.AutoSize = true;
+            this.storyboardPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.storyboardPanel.Location = new System.Drawing.Point(3, 16);
+            this.storyboardPanel.Name = "storyboardPanel";
+            this.storyboardPanel.Size = new System.Drawing.Size(1058, 496);
+            this.storyboardPanel.TabIndex = 0;
+            this.storyboardPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.storyboardBox_Paint);
+            // 
             // propertiesBox
             // 
             this.propertiesBox.Controls.Add(this.textBoxAuthor);
@@ -363,17 +374,6 @@
             this.subTT_1.Text = "Pressionamento de Tecla";
             this.subTT_1.Click += new System.EventHandler(this.novaTransiçãoToolStripMenuItem_Click);
             // 
-            // storyboardPanel
-            // 
-            this.storyboardPanel.AutoScroll = true;
-            this.storyboardPanel.AutoSize = true;
-            this.storyboardPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.storyboardPanel.Location = new System.Drawing.Point(3, 16);
-            this.storyboardPanel.Name = "storyboardPanel";
-            this.storyboardPanel.Size = new System.Drawing.Size(1058, 496);
-            this.storyboardPanel.TabIndex = 0;
-            this.storyboardPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.storyboardBox_Paint);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -382,7 +382,8 @@
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.menuStrip1);
             this.Name = "Form1";
-            this.Text = "Novo Projeto - InteraStudio";
+            this.Text = "*Novo Projeto - InteraStudio";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.Enter += new System.EventHandler(this.Form1_Enter);
             this.menuStrip1.ResumeLayout(false);

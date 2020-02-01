@@ -7,6 +7,7 @@ namespace InteraStudio
     public enum TransitionID {
         Automatic,
         Keyboard,
+        Timed,
 
         IdCount
     };
@@ -22,7 +23,7 @@ namespace InteraStudio
         public ScenePart nextScene;
         public List<Point> arrowPath = new List<Point>();
 
-        public static SceneTransition GetTransitionById(TransitionID id)
+        public static SceneTransition Create(TransitionID id)
         {
             switch(id)
             {
@@ -31,6 +32,22 @@ namespace InteraStudio
                 default:
                     return new SceneTransitionAutomatic();
             }
+        }
+
+        public void Configure()
+        {
+            Form config;
+
+            switch(id)
+            {
+                case TransitionID.Keyboard:
+                    config = new FormTransitionKeyboard(this);
+                    break;
+                default:
+                    return;
+            }
+
+            config.ShowDialog();
         }
 
         public TransitionID GetTransitionID()
@@ -52,6 +69,8 @@ namespace InteraStudio
     public class SceneTransitionKeyboard : SceneTransition
     {
         public int keycode;
+        public bool showOverlay;
+        public string caption;
 
         public SceneTransitionKeyboard() { id = TransitionID.Keyboard; }
 

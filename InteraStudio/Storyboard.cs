@@ -103,7 +103,7 @@ namespace InteraStudio
 
         public SceneTransition CreateTransition(ScenePart src, ScenePart dest, TransitionID type)
         {
-            SceneTransition t = SceneTransition.GetTransitionById(type);
+            SceneTransition t = SceneTransition.Create(type);
             t.nextScene = dest;
             src.transitions.Add(t);
             dest.AddRef(src);
@@ -158,13 +158,13 @@ namespace InteraStudio
 
             if (selectNextScene)
             {
-                // TODO: configure transition within a new Form (created by Strategy Pattern)
-                CreateTransition(selected, scenes[(int)thumbnail.Tag], transitionType);
+                SceneTransition t = CreateTransition(selected, scenes[(int)thumbnail.Tag], transitionType);
+                t.Configure();
                 selectNextScene = false;
             }
             else
             {
-                // Sets the starting scene for the "start from the selected scene" option
+                /// Sets the starting scene for the "start from the selected scene" option
                 selected = scenes[(int)thumbnail.Tag];
                 group.Invalidate();
             }
