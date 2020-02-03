@@ -28,7 +28,7 @@ namespace InteraStudio
             Clear();
         }
 
-        public ScenePart CreateScene(string videoFile = "", int id = -1)
+        public ScenePart CreateScene(string videoFile = "", string title = "", int id = -1)
         {
             ScenePart n = new ScenePart(id);
             scenes[n.id] = n;
@@ -46,7 +46,7 @@ namespace InteraStudio
             p.ContextMenuStrip = cms;
 
             Label l = new Label();
-            n.title = l.Text = "Cena " + n.id;
+            n.title = l.Text = (title.Equals(string.Empty)) ? ("Cena " + n.id) : title;
             p.Controls.Add(l);
 
             p.Tag = n.id; // for convenience

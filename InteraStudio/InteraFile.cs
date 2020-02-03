@@ -37,8 +37,11 @@ namespace InteraStudio
                         }
                         else if (xml.Name == "scene" && xml.HasAttributes)
                         {
-                            ScenePart p = storyboard.CreateScene(xml.GetAttribute("videoSrc"), int.Parse(xml.GetAttribute("id")));
-                            p.title = xml.GetAttribute("title");
+                            ScenePart p = storyboard.CreateScene(
+                                xml.GetAttribute("videoSrc"),
+                                xml.GetAttribute("title"),
+                                int.Parse(xml.GetAttribute("id"))
+                            );
                             p.thumbnail.ImageLocation = xml.GetAttribute("thumbSrc");
                             p.timeout = int.Parse(xml.GetAttribute("timeout"));
                             int x = int.Parse(xml.GetAttribute("posX"));

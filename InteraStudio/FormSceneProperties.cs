@@ -19,7 +19,7 @@ namespace InteraStudio
 
         private void textBoxTitle_TextChanged(object sender, System.EventArgs e)
         {
-            scene.thumbnail.Controls[0].Text = scene.title = textBoxTitle.Text;
+            scene.SetTitle(textBoxTitle.Text);
         }
 
         private void btnFile_Click(object sender, System.EventArgs e)

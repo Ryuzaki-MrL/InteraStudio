@@ -38,5 +38,10 @@ namespace InteraStudio
             if (refcount.ContainsKey(to) && --refcount[to] <= 0)
                 refcount.Remove(to);
         }
+
+        public void SetTitle(string title)
+        {
+            this.title = thumbnail.Controls[0].Text = title;
+        }
     }
 }
