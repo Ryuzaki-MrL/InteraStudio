@@ -218,5 +218,22 @@ namespace InteraStudio
             if (d == DialogResult.Yes)
                 salvarToolStripMenuItem_Click(sender, e);
         }
+
+        private void StartVideoFrom(ScenePart scene)
+        {
+            FormPlayer p = new FormPlayer(scene);
+            p.Play();
+            p.ShowDialog();
+        }
+
+        private void doInícioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            StartVideoFrom(project.storyboard.firstScene);
+        }
+
+        private void aPartirDaCenaSelecionadaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            StartVideoFrom(project.storyboard.selected);
+        }
     }
 }

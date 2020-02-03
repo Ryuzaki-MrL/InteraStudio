@@ -57,6 +57,8 @@ namespace InteraStudio
                                 tk.keycode = int.Parse(xml.GetAttribute("keycode"));
                                 if (!bool.TryParse(xml.GetAttribute("showOverlay"), out tk.showOverlay))
                                     tk.showOverlay = false;
+                                if (xml.GetAttribute("caption") != null)
+                                    tk.caption = xml.GetAttribute("caption");
                             }
                         }
                     }
@@ -123,6 +125,7 @@ namespace InteraStudio
                                 SceneTransitionKeyboard tk = (SceneTransitionKeyboard)t;
                                 xml.WriteAttributeString("keycode", tk.keycode.ToString());
                                 xml.WriteAttributeString("showOverlay", tk.showOverlay.ToString());
+                                xml.WriteAttributeString("caption", tk.caption);
                             }
                             xml.WriteEndElement();
                         }

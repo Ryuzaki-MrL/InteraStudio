@@ -44,7 +44,9 @@
             this.vlcControl1.TabIndex = 0;
             this.vlcControl1.Text = "vlcControl1";
             this.vlcControl1.VlcLibDirectory = ((System.IO.DirectoryInfo)(resources.GetObject("vlcControl1.VlcLibDirectory")));
+            this.vlcControl1.VlcLibDirectory = new System.IO.DirectoryInfo("libvlc/win-x86");
             this.vlcControl1.VlcMediaplayerOptions = null;
+            this.vlcControl1.EndReached += new System.EventHandler<Vlc.DotNet.Core.VlcMediaPlayerEndReachedEventArgs>(this.vlcControl1_EndReached);
             // 
             // FormPlayer
             // 
@@ -52,10 +54,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.vlcControl1);
+            this.KeyPreview = true;
             this.Name = "FormPlayer";
             this.ShowIcon = false;
-            this.Text = "FormPlayer";
-            this.TopMost = true;
+            this.Text = "InteraPlayer";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormPlayer_FormClosing);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.FormPlayer_KeyUp);
             ((System.ComponentModel.ISupportInitialize)(this.vlcControl1)).EndInit();
             this.ResumeLayout(false);
 

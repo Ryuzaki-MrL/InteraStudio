@@ -76,7 +76,12 @@ namespace InteraStudio
 
         public override string ToString()
         {
-            return "Pressione " + Keys.GetName(typeof(Keys), keycode) + " para a cena " + nextScene.title;
+            return "Pressione " + GetKeyName() + " para a cena " + nextScene.title;
+        }
+
+        public string GetKeyName()
+        {
+            return Keys.GetName(typeof(Keys), keycode);
         }
     }
 }

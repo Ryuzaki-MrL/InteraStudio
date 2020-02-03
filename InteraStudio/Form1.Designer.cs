@@ -189,12 +189,14 @@
             this.doInícioToolStripMenuItem.Name = "doInícioToolStripMenuItem";
             this.doInícioToolStripMenuItem.Size = new System.Drawing.Size(225, 22);
             this.doInícioToolStripMenuItem.Text = "Do início";
+            this.doInícioToolStripMenuItem.Click += new System.EventHandler(this.doInícioToolStripMenuItem_Click);
             // 
             // aPartirDaCenaSelecionadaToolStripMenuItem
             // 
             this.aPartirDaCenaSelecionadaToolStripMenuItem.Name = "aPartirDaCenaSelecionadaToolStripMenuItem";
             this.aPartirDaCenaSelecionadaToolStripMenuItem.Size = new System.Drawing.Size(225, 22);
             this.aPartirDaCenaSelecionadaToolStripMenuItem.Text = "A partir da Cena Selecionada";
+            this.aPartirDaCenaSelecionadaToolStripMenuItem.Click += new System.EventHandler(this.aPartirDaCenaSelecionadaToolStripMenuItem_Click);
             // 
             // splitContainer1
             // 
